@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-import joke from './joke/reducer';
+import pokedex from './pokedex/reducer';
+import pokemon from './pokemon/reducer';
 
 export default combineReducers({
-  joke,
+  pokedex,
+  pokemon,
 });

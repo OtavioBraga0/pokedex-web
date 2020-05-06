@@ -1,0 +1,77 @@
+@use "sass:math" as math;
+
+li#pokedex-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid rgba($color: #4f4f4f, $alpha: .5);
+  border-radius: 5px;
+
+  margin-top: 20px;
+
+  cursor: pointer;
+
+  div#pokemon-image{
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+
+    img {
+      max-height: 100px;
+      max-width: 100%;
+    }
+  }
+
+  &:hover{
+    background: linear-gradient(0deg, #FFFFFF, #FFFFFF), linear-gradient(359.69deg, #559EDF -34.62%, #69B9E3 98.83%);
+    background-blend-mode: soft-light, normal;
+    box-shadow: 0px 0px 10px rgba(96, 173, 225, 0.7);
+  }
+
+  div#pokedex-detail {
+    margin-top: 10px;
+    padding: 5px 10px;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+
+    background-color: rgba($color: #4f4f4f, $alpha: .2);
+
+    span {
+      color: rgba($color: #000000, $alpha: .5)
+    }
+
+    strong {
+      text-transform: capitalize;
+    }
+  }
+
+  &.come-in {
+    transform: translateY(150px);
+    animation: come-in 0.8s ease forwards;
+  }
+
+  $child: 1;
+
+  &.come-in:nth-child(1n) {
+    animation-duration: $child * 0.6s;
+
+    $child: $child + 1;
+  }
+
+  @keyframes come-in {
+    to { transform: translateY(0); }
+  }
+}

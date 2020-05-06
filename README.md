@@ -1,6 +1,6 @@
-## Guiabolso - Dev Front-End Teste
+## PokeDex Web
 
-Integração com uma API de piadas sobre o [Chuck Norris](https://api.chucknorris.io/), foi desenvolvido uma aplicação visualmente simples. A aplicação esta utilizando Redux.
+Integração com uma API, o [PokeAPI](https://pokeapi.co/). A aplicação esta utilizando Redux.
 
 Para rodar o projeto, abra o terminal na raiz do projeto e rode o comando:
 

@@ -1,7 +1,8 @@
 import { all } from 'redux-saga/effects';
 
-import joke from './joke/sagas';
+import pokedex from './pokedex/sagas';
+import pokemon from './pokemon/sagas';
 
 export default function* rootSaga() {
-  return yield all([joke]);
+  return yield all([pokedex, pokemon]);
 }
