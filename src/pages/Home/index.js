@@ -16,36 +16,13 @@ export default function Home() {
   const dispatch = useDispatch();
 
   const [pokemons, setPokemons] = useState([]);
-  const [lazyPokemons, setLazyPokemons] = useState([]);
   const [pokemonId, setPokemonId] = useState(0);
 
   const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [loaded, setLoaded] = useState(0);
 
   useEffect(() => {
     dispatch(PokedexAction.getPokedexRequest());
   }, [dispatch]);
-
-  const handleLoad = useCallback(() => {
-    if (pokemons.length > 0) {
-      setLoading(true);
-
-      let lastLoaded = loaded + 18;
-
-      if (lastLoaded > pokemons.length) {
-        lastLoaded = pokemons.length;
-      }
-
-      const lazy = pokemons.slice(loaded, lastLoaded);
-
-      setLoaded(lastLoaded);
-
-      setLazyPokemons(lazy);
-
-      setLoading(false);
-    }
-  }, [pokemons]);
 
   useEffect(() => {
     if (pokedex) {

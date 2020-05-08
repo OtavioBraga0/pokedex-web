@@ -4,26 +4,153 @@ div#modal-container {
 
   border-radius: 15px;
 
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: .2px solid #4f4f4f;
+
+    margin: 10px;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #4f4f4f;
+    border-radius: 10px;
+  }
+
   div#modal-header {
-    height: 20%;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    height: 10%;
   }
 
   div#modal-body{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    width: 100%;
 
-    height: 80%;
+    flex-direction: column;
+
+    min-height: 80%;
     border-radius: 48px 48px 15px 15px;
 
     background: #ffffff;
+
+    padding: 0 30px;
+    margin-top: 20%;
 
     img#pokemon-image{
       height: 150px;
       width: 150px;
 
       margin-top: -100px;
+    }
+
+    div#pokemon-details {
+      margin: 25px 15px;
+
+      width: 100%;
+
+      h1 {
+        text-transform: capitalize;
+        text-align: center;
+      }
+
+      ul#pokemon-types {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        margin-top: 15px;
+      }
+
+      div#pokemon-tabs {
+        margin-top: 15px;
+        ul#tabs{
+          display: flex;
+          justify-content: space-around;
+          li {
+            width: 25%;
+            height: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            cursor: pointer;
+
+            text-transform: uppercase;
+          }
+        }
+
+        div.tab{
+          margin-top: 30px;
+          &#tab-1 {
+            ul#stats{
+              li {
+                display: flex;
+                margin-bottom: 8px;
+                text-transform: uppercase;
+
+                align-items: center;
+
+                div.stat-title{
+                  width: 10%;
+                  font-weight: bold;
+                }
+                div.stat-value {
+                  width: 10%;
+                  text-align: center;
+                }
+                div.stat-bar {
+                  width: 80%;
+                  height: 10px;
+
+                  background: rgba($color: #4f4f4f, $alpha: .2);
+
+                  border-radius: 5px;
+
+                  div.stat-progress {
+                    border-radius: 5px;
+                    background: #4f4f4f;
+                    height: 100%;
+                    z-index: 2;
+                  }
+                }
+              }
+            }
+
+            ul#weaknesses{
+              display: grid;
+              grid-template-columns: repeat(3, 6fr);
+              grid-gap: 20px;
+            }
+
+            ul#abilities{
+              display: grid;
+              grid-template-columns: repeat(3, 6fr);
+              grid-gap: 20px;
+
+              li.ability {
+                font-size: 15px;
+                text-transform: capitalize;
+                text-align: center;
+
+                &:nth-child(even){
+                  border-left: .5px solid rgba($color: #000000, $alpha: .4);
+                  border-right: .5px solid rgba($color: #000000, $alpha: .4);
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 
@@ -37,5 +164,12 @@ div#modal-container {
     img {
       width: 80%;
     }
+  }
+
+  div.section-title{
+    width: 100%;
+    text-align: center;
+    margin: 25px 0;
+    font-size: 20px;
   }
 }

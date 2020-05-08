@@ -8,7 +8,7 @@ export const devices = {
   desktop: '2560px',
 };
 
-export const colors = {
+export const colorsGradient = {
   normal: 'linear-gradient(180deg, #9298A4 0%, #A3A49E 98.71%)',
   fighting: 'linear-gradient(180deg, #CE4265 0%, #E74347 98.71%)',
   flying: 'linear-gradient(180deg, #90A7DA 0%, #A6C2F2 100%)',
@@ -29,4 +29,36 @@ export const colors = {
   fairy: 'linear-gradient(180deg, #EC8CE5 0%, #F3A7E7 98.36%)',
   unknown: '',
   shadow: '',
+};
+
+export const colors = {
+  normal: '#9298A4',
+  fighting: '#CE4265',
+  flying: '#90A7DA',
+  poison: '#A864C7',
+  ground: '#C5B489',
+  rock: '#DC7545',
+  bug: '#92BC2C',
+  ghost: '#516AAC',
+  steel: '#52869D',
+  fire: '#FB9B51',
+  water: '#4A90DD',
+  grass: '#5FBC51',
+  electric: '#EDD53E',
+  psychic: '#F66F71',
+  ice: '#70CCBD',
+  dragon: '#0C69C8',
+  dark: '#595761',
+  fairy: '#EC8CE5',
+  unknown: '',
+  shadow: '',
+};
+
+export const stats = {
+  speed: 'spd',
+  'special-defense': 'sdef',
+  'special-attack': 'satk',
+  defense: 'def',
+  attack: 'atk',
+  hp: 'hp',
 };
