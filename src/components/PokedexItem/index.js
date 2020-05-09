@@ -11,13 +11,23 @@ export default function PokedexItem({ pokemon, handleClick }) {
     <li className="come-in" id="pokedex-item" onClick={handleClick}>
       <div id="pokemon-image">
         <img
-          src={`https://img.pokemondb.net/sprites/home/normal/${pokemon.pokemon_species.name}.png`}
-          alt={pokemon.pokemon_species.name}
+          src={`https://img.pokemondb.net/sprites/home/normal/${pokemon.name}.png`}
+          alt={pokemon.name}
         />
+        <div id="pokemon-types">
+          {pokemon.types.map(item => (
+            <img
+              key={item.type.name}
+              className="type-icon"
+              src={`${process.env.PUBLIC_URL}/src/assets/types/${item.type.name}.svg`}
+              alt={item.type.name}
+            />
+          ))}
+        </div>
       </div>
       <div id="pokedex-detail">
-        <span>#{pokemon.entry_number}</span>
-        <strong>{pokemon.pokemon_species.name}</strong>
+        <span>#{pokemon.id}</span>
+        <strong>{pokemon.name}</strong>
       </div>
     </li>
   );
@@ -25,10 +35,9 @@ export default function PokedexItem({ pokemon, handleClick }) {
 
 PokedexItem.propTypes = {
   pokemon: PropTypes.shape({
-    entry_number: PropTypes.number,
-    pokemon_species: PropTypes.shape({
-      name: PropTypes.string,
-    }),
+    id: PropTypes.number,
+    name: PropTypes.string,
+    types: PropTypes.array,
   }).isRequired,
   handleClick: PropTypes.func.isRequired,
 };

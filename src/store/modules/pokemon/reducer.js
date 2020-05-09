@@ -6,10 +6,6 @@ export default function pokemon(state = {}, action) {
       return produce(state, draft => {
         draft.data = action.pokemon;
       });
-    case '@pokemon/GET_WEAKNESSES_SUCCESS':
-      return produce(state, draft => {
-        draft.weaknesses = action.weaknesses;
-      });
     default:
       return state;
   }

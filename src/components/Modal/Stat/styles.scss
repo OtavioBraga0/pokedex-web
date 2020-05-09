@@ -1,0 +1,79 @@
+ul#stats{
+  li {
+    display: flex;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+
+    align-items: center;
+
+    div.stat-title{
+      width: 10%;
+      font-weight: bold;
+    }
+    div.stat-value {
+      width: 10%;
+      text-align: center;
+    }
+    div.stat-bar {
+      width: 80%;
+      height: 10px;
+
+      background: rgba($color: #4f4f4f, $alpha: .2);
+
+      border-radius: 5px;
+
+      div.stat-progress {
+        border-radius: 5px;
+        background: #4f4f4f;
+        height: 100%;
+        width: 0;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+ul#weaknesses{
+  display: grid;
+  grid-template-columns: repeat(3, 6fr);
+  grid-gap: 20px;
+}
+
+ul#abilities{
+  display: flex;
+  flex-direction: column;
+
+  li.ability {
+    padding: 10px 0;
+
+    &:nth-child(1n){
+      border-bottom: .5px solid rgba($color: #000000, $alpha: .2);
+    }
+
+    &:last-child{
+      border-bottom: none;
+    }
+
+    p.ability-description {
+      margin-top: 5px;
+      font-size: 15px;
+      line-height: 20px;
+    }
+
+    span.subtitle{
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+
+.subtitle {
+  font-size: 15px;
+  text-transform: capitalize;
+  text-align: center;
+}

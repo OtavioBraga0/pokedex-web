@@ -4,10 +4,25 @@ import api from '../../../services/api';
 
 import { getPokedexSuccess } from './actions';
 
-function* getPokedex() {
-  const response = yield call(api.get, `/pokedex/2`);
+async function fetchPokemonData(data, url) {
+  const pokemonsDetails = data.map(async item => {
+    const response = await api.get(`${url}${item.name}`);
+    return response.data;
+  });
 
-  yield put(getPokedexSuccess(response.data));
+  const response = await Promise.all(pokemonsDetails).then(res => res);
+
+  return response;
+}
+
+function* getPokedex() {
+  const response = yield call(api.get, `/pokemon?offset=0&limit=151`);
+
+  const pokemons = response.data.results;
+
+  const pokedex = yield fetchPokemonData(pokemons, '/pokemon/');
+
+  yield put(getPokedexSuccess(pokedex));
 }
 
 export default all([takeLatest('@pokedex/GET_REQUEST', getPokedex)]);

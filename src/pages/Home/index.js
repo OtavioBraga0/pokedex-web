@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './styles.scss';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,60 +8,91 @@ import PokedexItem from '../../components/PokedexItem';
 
 import * as PokedexAction from '../../store/modules/pokedex/actions';
 
-import loadingImage from '../../assets/pokeball.svg';
 import Modal from '../../components/Modal';
+import Loading from '../../components/Loading';
 
 export default function Home() {
   const pokedex = useSelector(state => state.pokedex.data);
   const dispatch = useDispatch();
 
   const [pokemons, setPokemons] = useState([]);
+  const [prevPokemons, setPrevPokemons] = useState([]);
   const [pokemonId, setPokemonId] = useState(0);
 
+  const [offset, setOffset] = useState(33);
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  async function handleLoad() {
+    if (pokedex) {
+      setLoading(true);
+      const data = await pokedex.filter(poke => poke.id <= offset);
+      setPokemons(data);
+      setPrevPokemons(data);
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
     dispatch(PokedexAction.getPokedexRequest());
   }, [dispatch]);
 
   useEffect(() => {
-    if (pokedex) {
-      const data = pokedex.pokemon_entries.filter(poke => {
-        return poke.pokemon_species.name.indexOf(search.toLowerCase()) > -1;
-      });
-
-      setPokemons(data);
+    if (pokemons.length !== 151 && pokedex) {
+      handleLoad();
     }
-  }, [search, pokedex]);
+  }, [pokedex, offset]);
+
+  function handleScroll() {
+    const pokedexContainer = document.getElementById('pokedex-container');
+    pokedexContainer.addEventListener('scroll', () => {
+      if (
+        pokedexContainer.scrollTop + pokedexContainer.clientHeight >=
+        pokedexContainer.scrollHeight
+      ) {
+        setOffset(value => value + 18);
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (search === '') {
+      handleScroll();
+    }
+  }, [search]);
 
   function handleClick(id) {
     setPokemonId(id);
   }
 
+  function handleSearchChange(value) {
+    const data = prevPokemons.filter(poke => {
+      return poke.name.indexOf(value.toLowerCase()) > -1;
+    });
+
+    setPokemons(data);
+    setSearch(value);
+  }
+
   return (
     <div id="home-container">
       <div id="pokedex-container">
-        <SearchBar search={search} setSearch={setSearch} />
-        <ul id="pokedex">
-          {pokemons &&
-            pokemons.map(poke => (
-              <PokedexItem
-                key={poke.entry_number}
-                pokemon={poke}
-                handleClick={() => handleClick(poke.entry_number)}
-              />
-            ))}
-        </ul>
-        <div id="home-footer">
-          {/* <button id="load-pokedex" type="button" onClick={handleLoad}>
-          <img
-            className={loading ? 'loading' : null}
-            id="loading-image"
-            src={loadingImage}
-            alt="Loading Pokedex"
-          />
-        </button> */}
-        </div>
+        {!loading ? (
+          <>
+            <SearchBar search={search} setSearch={handleSearchChange} />
+            <ul id="pokedex">
+              {pokemons.map(poke => (
+                <PokedexItem
+                  key={poke.id}
+                  pokemon={poke}
+                  handleClick={() => handleClick(poke.id)}
+                />
+              ))}
+            </ul>
+          </>
+        ) : (
+          <Loading loading={loading} />
+        )}
       </div>
       <Modal id={pokemonId} setPokemonId={setPokemonId} />
     </div>

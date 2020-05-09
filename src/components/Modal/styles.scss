@@ -91,64 +91,6 @@ div#modal-container {
 
         div.tab{
           margin-top: 30px;
-          &#tab-1 {
-            ul#stats{
-              li {
-                display: flex;
-                margin-bottom: 8px;
-                text-transform: uppercase;
-
-                align-items: center;
-
-                div.stat-title{
-                  width: 10%;
-                  font-weight: bold;
-                }
-                div.stat-value {
-                  width: 10%;
-                  text-align: center;
-                }
-                div.stat-bar {
-                  width: 80%;
-                  height: 10px;
-
-                  background: rgba($color: #4f4f4f, $alpha: .2);
-
-                  border-radius: 5px;
-
-                  div.stat-progress {
-                    border-radius: 5px;
-                    background: #4f4f4f;
-                    height: 100%;
-                    z-index: 2;
-                  }
-                }
-              }
-            }
-
-            ul#weaknesses{
-              display: grid;
-              grid-template-columns: repeat(3, 6fr);
-              grid-gap: 20px;
-            }
-
-            ul#abilities{
-              display: grid;
-              grid-template-columns: repeat(3, 6fr);
-              grid-gap: 20px;
-
-              li.ability {
-                font-size: 15px;
-                text-transform: capitalize;
-                text-align: center;
-
-                &:nth-child(even){
-                  border-left: .5px solid rgba($color: #000000, $alpha: .4);
-                  border-right: .5px solid rgba($color: #000000, $alpha: .4);
-                }
-              }
-            }
-          }
         }
       }
     }

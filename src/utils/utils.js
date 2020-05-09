@@ -62,3 +62,7 @@ export const stats = {
   attack: 'atk',
   hp: 'hp',
 };
+
+export function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
