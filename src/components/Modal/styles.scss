@@ -6,26 +6,58 @@ div#modal-container {
 
   overflow: auto;
 
+  position: relative;
+
   &::-webkit-scrollbar {
     width: 0px;
   }
 
-  /* Track */
-  &::-webkit-scrollbar-track {
-    border-radius: 10px;
-    border: .2px solid #4f4f4f;
-
-    margin: 10px;
-  }
-
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #4f4f4f;
-    border-radius: 10px;
-  }
-
   div#modal-header {
-    height: 10%;
+    width: 100%;
+    opacity: 0;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top: 20px;
+
+    transition: all .8s ease;
+
+    img#fixed-pokemon-image {
+      width: 0;
+      height: 0;
+    }
+
+    span#fixed-pokemon-name{
+      color: transparent;
+    }
+
+    &.fixed {
+      height: 75px;
+
+      opacity: 1;
+
+      position: sticky;
+      top: 0;
+      right: 0;
+      left: 0;
+
+      img#fixed-pokemon-image {
+        width: 75px;
+        height: 75px;
+
+        margin-top: -25px;
+      }
+
+      span#fixed-pokemon-name{
+        color: #FFF;
+        text-transform: capitalize;
+        font-size: 22px;
+      }
+    }
+
+
   }
 
   div#modal-body{
@@ -36,12 +68,13 @@ div#modal-container {
     flex-direction: column;
 
     min-height: 80%;
-    border-radius: 48px 48px 15px 15px;
+    border-radius: 48px;
 
     background: #ffffff;
 
     padding: 0 30px;
     margin-top: 20%;
+    margin-bottom: 20px;
 
     img#pokemon-image{
       height: 150px;
@@ -73,24 +106,25 @@ div#modal-container {
         ul#tabs{
           display: flex;
           justify-content: space-around;
-          li {
-            width: 25%;
+
+          li.react-tabs__tab{
+            text-transform: uppercase;
+
+            width: 32%;
             height: 30px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            border-radius: 15px;
+            margin-bottom: 20px;
+
+            border-radius: 20px;
 
             cursor: pointer;
 
-            text-transform: uppercase;
+            transition: all .5s ease;
           }
-        }
-
-        div.tab{
-          margin-top: 30px;
         }
       }
     }
@@ -106,12 +140,5 @@ div#modal-container {
     img {
       width: 80%;
     }
-  }
-
-  div.section-title{
-    width: 100%;
-    text-align: center;
-    margin: 25px 0;
-    font-size: 20px;
   }
 }

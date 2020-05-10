@@ -1,5 +1,5 @@
 
-ul#breending {
+ul#capture {
   display: grid;
   grid-template-columns: repeat(3, 6fr);
   grid-gap: 20px;
@@ -18,35 +18,28 @@ ul#breending {
       width: 100%;
     }
 
-    p.breending-eggs,
-    p.breending-hatch{
+    p.capture-habitat,
+    p.capture-generation{
       text-align: center;
       margin-top: 10px;
       text-transform: capitalize;
     }
 
-    div#breending-gender {
+    div#capture-rate {
       display: flex;
       align-items: center;
 
       height: 100%;
 
-      div#gender-percentage {
+      div#capture-rate-percentage {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
 
         width: 50%;
         height: 70%;
-
-        p#male{
-          color: #80B6F4;
-        }
-        p#female {
-          color: #CE71E1;
-        }
       }
-      div#gender-graph {
+      div#capture-rate-graph {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -59,14 +52,11 @@ ul#breending {
         width: 50%;
 
         img {
-          margin-top: -10px;
+          margin-top: -11.5px;
         }
 
-        .CircularProgressbar-path {
-          stroke: #CE71E1;
-        }
         .CircularProgressbar-trail {
-          stroke: #80B6F4;
+          stroke: #E6E6E6;
         }
       }
     }

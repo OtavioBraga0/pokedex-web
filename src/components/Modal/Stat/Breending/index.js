@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import genderIcon from '../../../../assets/gender.svg';
 
+import { SectionSubtitle } from '../../../SectionTitle';
+
 import './styles.scss';
 
-export default function Breending({ pokemon, color }) {
+export default function Breending({ color }) {
+  const pokemon = useSelector(state => state.pokemon.data);
+
   const [female, setFemale] = useState(0);
 
   useEffect(() => {
@@ -17,9 +22,7 @@ export default function Breending({ pokemon, color }) {
   return (
     <ul id="breending">
       <li id="egg">
-        <p style={{ color }} className="subtitle">
-          Egg Group
-        </p>
+        <SectionSubtitle title="Egg Group" color={color} />
         {pokemon &&
           pokemon.pokemonSpeciesDetails.egg_groups.map(item => (
             <p key={item.name} className="breending-eggs">

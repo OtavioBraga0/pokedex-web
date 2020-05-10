@@ -6,12 +6,14 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import * as PokemonActions from '../../store/modules/pokemon/actions';
 
 import pikachu from '../../assets/pikachu.png';
 import { colorsGradient, colors, stats } from '../../utils/utils';
 import Stat from './Stat';
 import Loading from '../Loading';
+import Evolution from './Evolution';
 
 export default function Modal({ id }) {
   const pokemon = useSelector(state => state.pokemon.data);
@@ -21,6 +23,11 @@ export default function Modal({ id }) {
   const [color, setColor] = useState('#FFF');
 
   const [loading, setLoading] = useState(false);
+
+  const [tabIndex, setTabIndex] = useState(0);
+
+  const active = { color: '#FFFFFF', background: colorGradient };
+  const disable = { color, background: '#FFF' };
 
   useEffect(() => {
     if (id !== 0) {
@@ -36,11 +43,17 @@ export default function Modal({ id }) {
       setColorGradient(colorsGradient[pokemon.types[0].type.name]);
       setColor(colors[pokemon.types[0].type.name]);
 
+      console.log(pokemon);
+
       if (id === pokemon.id) {
         setLoading(false);
       }
     }
-  }, [pokemon]);
+  }, [pokemon, id]);
+
+  function handleChangeTab(index) {
+    setTabIndex(index);
+  }
 
   return (
     <div
@@ -77,23 +90,34 @@ export default function Modal({ id }) {
                   </li>
                 ))}
               </ul>
-              <div id="pokemon-tabs">
-                <ul id="tabs">
-                  <li className="active">Stats</li>
-                  <li>Evolutions</li>
-                  <li>Moves</li>
-                </ul>
-                <div className="tab" id="tab-1">
+              <Tabs
+                id="pokemon-tabs"
+                defaultIndex={tabIndex}
+                onSelect={index => handleChangeTab(index)}
+              >
+                <TabList id="tabs">
+                  <Tab style={tabIndex === 0 ? active : disable}>Stats</Tab>
+                  <Tab style={tabIndex === 1 ? active : disable}>
+                    Evolutions
+                  </Tab>
+                  <Tab style={tabIndex === 2 ? active : disable}>Moves</Tab>
+                </TabList>
+
+                <TabPanel>
                   <Stat
                     pokemon={pokemon}
                     color={color}
                     colorGradient={colorGradient}
                     stats={stats}
                   />
-                </div>
-                <div className="tab" id="tab-2" />
-                <div className="tab" id="tab-3" />
-              </div>
+                </TabPanel>
+                <TabPanel>
+                  <Evolution pokemon={pokemon} color={color} />
+                </TabPanel>
+                <TabPanel>
+                  <h2>Any content 3</h2>
+                </TabPanel>
+              </Tabs>
             </div>
           </div>
         </>

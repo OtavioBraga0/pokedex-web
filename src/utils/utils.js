@@ -63,6 +63,15 @@ export const stats = {
   hp: 'hp',
 };
 
-export function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+export const evolveItem = {
+  'water-stone': 'Water Stone',
+  'fire-stone': 'Fire Stone',
+  'leaf-stone': 'Leaf Stone',
+  'moon-stone': 'Moon Stone',
+  'thunder-stone': 'Thunder Stone',
+  'sun-stone': 'Sun Stone',
+  'shiny-stone': 'Shiny Stone',
+  'dusk-stone': 'Dusk Stone',
+  'dawn-stone': 'Dawn Stone',
+  'ice-stone': 'Ice Stone',
+};

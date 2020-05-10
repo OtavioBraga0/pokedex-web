@@ -3,10 +3,13 @@ import React from 'react';
 import './styles.scss';
 import PropTypes from 'prop-types';
 
-import { FaEyeSlash } from 'react-icons/fa';
-
 import Weakness from './Weakness';
-import Breeding from './Breending';
+import Breending from './Breending';
+import Ability from './Ability';
+import Capture from './Capture';
+import Sprite from './Sprite';
+
+import SectionTitle from '../../SectionTitle';
 
 export default function Stat({ pokemon, color, colorGradient, stats }) {
   function loadWeaknesses(data, force) {
@@ -37,9 +40,7 @@ export default function Stat({ pokemon, color, colorGradient, stats }) {
           </li>
         ))}
       </ul>
-      <div className="section-title">
-        <span style={{ color }}>Weaknesses</span>
-      </div>
+      <SectionTitle title="Weaknesses" color={color} />
       <ul id="weaknesses">
         {pokemon &&
           loadWeaknesses(
@@ -57,32 +58,26 @@ export default function Stat({ pokemon, color, colorGradient, stats }) {
             '0X'
           )}
       </ul>
-      <div className="section-title">
-        <span style={{ color }}>Abilities</span>
-      </div>
+      <SectionTitle title="Abilities" color={color} />
       <ul id="abilities">
         {pokemon &&
           pokemon.abilitiesDetails.map(item => (
-            <li key={item.name} className="ability">
-              <span style={{ color }} className="subtitle">
-                {item.name}
-                {item.pokemon.map(pokemonAbility =>
-                  pokemonAbility.pokemon.name === pokemon.name &&
-                  pokemonAbility.is_hidden ? (
-                    <FaEyeSlash key={item.name} color={color} size={16} />
-                  ) : null
-                )}
-              </span>
-              <p className="ability-description">
-                {item.effect_entries[0].effect}
-              </p>
-            </li>
+            <Ability
+              key={item.name}
+              ability={item}
+              pokemon={pokemon}
+              color={color}
+            />
           ))}
       </ul>
-      <div className="section-title">
-        <span style={{ color }}>Breeding</span>
-      </div>
-      <Breeding pokemon={pokemon} color={color} />
+      <SectionTitle title="Breending" color={color} />
+      <Breending pokemon={pokemon} color={color} />
+
+      <SectionTitle title="Capture" color={color} />
+      <Capture pokemon={pokemon} color={color} />
+
+      <SectionTitle title="Sprites" color={color} />
+      <Sprite name={pokemon.name} color={color} />
     </>
   );
 }

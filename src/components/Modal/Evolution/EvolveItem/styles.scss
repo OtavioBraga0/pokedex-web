@@ -1,0 +1,42 @@
+li.evolve-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: .5px solid rgba($color: #000000, $alpha: .4);
+
+  padding: 10px 0;
+
+  &:last-child{
+    border: none;
+  }
+
+  div.evolve-image-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    img.evolve-image {
+      width: 100px;
+    }
+
+    span.evolve-name{
+      text-align: center;
+      text-transform: capitalize;
+      margin-top: 10px;
+
+      font-size: 15px;
+    }
+  }
+
+  div.evolve-trigger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    span.evolve-trigger-name {
+      text-align: center;
+      text-transform: capitalize;
+    }
+  }
+}

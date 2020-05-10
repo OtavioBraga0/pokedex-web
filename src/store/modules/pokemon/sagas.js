@@ -35,7 +35,10 @@ function* getPokemon({ id }) {
   response = yield call(api.get, `/pokemon-species/${id}`);
   pokemon.pokemonSpeciesDetails = response.data;
 
-  response = yield call(api.get, `/evolution-chain/${id}`);
+  const evolutionId = pokemon.pokemonSpeciesDetails.evolution_chain.url.split(
+    '/evolution-chain/'
+  )[1];
+  response = yield call(api.get, `/evolution-chain/${evolutionId}`);
   pokemon.evolutionChain = response.data;
 
   yield put(getPokemonSuccess(pokemon));
