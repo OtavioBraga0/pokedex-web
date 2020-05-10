@@ -62,6 +62,5 @@ export default function Capture({ color }) {
 }
 
 Capture.propTypes = {
-  pokemon: PropTypes.shape().isRequired,
   color: PropTypes.string.isRequired,
 };

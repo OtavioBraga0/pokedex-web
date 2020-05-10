@@ -13,10 +13,15 @@ export default function Breending({ color }) {
   const pokemon = useSelector(state => state.pokemon.data);
 
   const [female, setFemale] = useState(0);
+  const [noGender, setNoGender] = useState(false);
 
   useEffect(() => {
-    const femaleRate = (pokemon.pokemonSpeciesDetails.gender_rate * 100) / 8;
-    setFemale(femaleRate);
+    if (pokemon.pokemonSpeciesDetails.gender_rate !== -1) {
+      const femaleRate = (pokemon.pokemonSpeciesDetails.gender_rate * 100) / 8;
+      setFemale(femaleRate);
+    } else {
+      setNoGender(true);
+    }
   }, [pokemon]);
 
   return (
@@ -43,20 +48,26 @@ export default function Breending({ color }) {
           Gender
         </p>
         <div id="breending-gender">
-          <div id="gender-percentage">
-            <p id="female">{female}%</p>
-            <p id="male">{100 - female}%</p>
-          </div>
-          <div id="gender-graph">
-            <CircularProgressbarWithChildren
-              value={female}
-              styles={{
-                root: { width: '100%' },
-              }}
-            >
-              <img src={genderIcon} alt="Gender Graph" />
-            </CircularProgressbarWithChildren>
-          </div>
+          {noGender ? (
+            <p>No Gender</p>
+          ) : (
+            <>
+              <div id="gender-percentage">
+                <p id="female">{female}%</p>
+                <p id="male">{100 - female}%</p>
+              </div>
+              <div id="gender-graph">
+                <CircularProgressbarWithChildren
+                  value={female}
+                  styles={{
+                    root: { width: '100%' },
+                  }}
+                >
+                  <img src={genderIcon} alt="Gender Graph" />
+                </CircularProgressbarWithChildren>
+              </div>
+            </>
+          )}
         </div>
       </li>
     </ul>
@@ -64,6 +75,5 @@ export default function Breending({ color }) {
 }
 
 Breending.propTypes = {
-  pokemon: PropTypes.shape().isRequired,
   color: PropTypes.string.isRequired,
 };

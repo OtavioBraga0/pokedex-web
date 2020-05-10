@@ -14,6 +14,7 @@ import { colorsGradient, colors, stats } from '../../utils/utils';
 import Stat from './Stat';
 import Loading from '../Loading';
 import Evolution from './Evolution';
+import Moves from './Moves';
 
 export default function Modal({ id }) {
   const pokemon = useSelector(state => state.pokemon.data);
@@ -42,8 +43,6 @@ export default function Modal({ id }) {
     if (pokemon) {
       setColorGradient(colorsGradient[pokemon.types[0].type.name]);
       setColor(colors[pokemon.types[0].type.name]);
-
-      console.log(pokemon);
 
       if (id === pokemon.id) {
         setLoading(false);
@@ -97,9 +96,11 @@ export default function Modal({ id }) {
               >
                 <TabList id="tabs">
                   <Tab style={tabIndex === 0 ? active : disable}>Stats</Tab>
-                  <Tab style={tabIndex === 1 ? active : disable}>
-                    Evolutions
-                  </Tab>
+                  {pokemon.evolutionChain.chain.evolves_to.length !== 0 ? (
+                    <Tab style={tabIndex === 1 ? active : disable}>
+                      Evolutions
+                    </Tab>
+                  ) : null}
                   <Tab style={tabIndex === 2 ? active : disable}>Moves</Tab>
                 </TabList>
 
@@ -111,11 +112,13 @@ export default function Modal({ id }) {
                     stats={stats}
                   />
                 </TabPanel>
+                {pokemon.evolutionChain.chain.evolves_to.length !== 0 ? (
+                  <TabPanel>
+                    <Evolution pokemon={pokemon} color={color} />
+                  </TabPanel>
+                ) : null}
                 <TabPanel>
-                  <Evolution pokemon={pokemon} color={color} />
-                </TabPanel>
-                <TabPanel>
-                  <h2>Any content 3</h2>
+                  <Moves />
                 </TabPanel>
               </Tabs>
             </div>

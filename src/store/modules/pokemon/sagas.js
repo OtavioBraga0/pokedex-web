@@ -41,6 +41,12 @@ function* getPokemon({ id }) {
   response = yield call(api.get, `/evolution-chain/${evolutionId}`);
   pokemon.evolutionChain = response.data;
 
+  pokemon.movesDetails = yield fetchPokemonData(
+    pokemon.moves,
+    'move',
+    '/move/'
+  );
+
   yield put(getPokemonSuccess(pokemon));
 }
 
