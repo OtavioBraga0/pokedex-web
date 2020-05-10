@@ -14,11 +14,21 @@ export default function EvolveItem({ evolve, color }) {
     switch (trigger.trigger.name) {
       case 'level-up':
         if (trigger.time_of_day) {
-          response.data = trigger.time_of_day;
+          if (trigger.held_item) {
+            response.data = `${trigger.time_of_day} Holding ${
+              evolveItem[`${trigger.held_item.name}`]
+            }`;
+          } else {
+            response.data = trigger.time_of_day;
+          }
         } else if (trigger.location) {
           response.data = `Location`;
         } else if (trigger.known_move_type) {
-          response.data = trigger.known_move_type.name;
+          response.data = `Move Type: ${trigger.known_move_type.name}`;
+        } else if (trigger.min_happiness) {
+          response.data = `Happiness`;
+        } else if (trigger.known_move) {
+          response.data = `Move: ${trigger.known_move.name}`;
         } else {
           response.data = `Lv. ${trigger.min_level}`;
         }
@@ -28,6 +38,11 @@ export default function EvolveItem({ evolve, color }) {
         break;
       case 'trade':
         response.data = 'Trade';
+        if (trigger.held_item) {
+          response.data = `Trade Holding ${
+            evolveItem[`${trigger.held_item.name}`]
+          }`;
+        }
         break;
       default:
         break;

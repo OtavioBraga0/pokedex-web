@@ -39,20 +39,23 @@ export default function Modal({ id }) {
     }
   }, [id, dispatch]);
 
+  function handleChangeTab(index) {
+    setTabIndex(index);
+  }
+
   useEffect(() => {
     if (pokemon) {
       setColorGradient(colorsGradient[pokemon.types[0].type.name]);
       setColor(colors[pokemon.types[0].type.name]);
 
       if (id === pokemon.id) {
+        console.log(pokemon);
+
+        handleChangeTab(0);
         setLoading(false);
       }
     }
   }, [pokemon, id]);
-
-  function handleChangeTab(index) {
-    setTabIndex(index);
-  }
 
   return (
     <div
@@ -96,11 +99,9 @@ export default function Modal({ id }) {
               >
                 <TabList id="tabs">
                   <Tab style={tabIndex === 0 ? active : disable}>Stats</Tab>
-                  {pokemon.evolutionChain.chain.evolves_to.length !== 0 ? (
-                    <Tab style={tabIndex === 1 ? active : disable}>
-                      Evolutions
-                    </Tab>
-                  ) : null}
+                  <Tab style={tabIndex === 1 ? active : disable}>
+                    Evolutions
+                  </Tab>
                   <Tab style={tabIndex === 2 ? active : disable}>Moves</Tab>
                 </TabList>
 
@@ -112,11 +113,9 @@ export default function Modal({ id }) {
                     stats={stats}
                   />
                 </TabPanel>
-                {pokemon.evolutionChain.chain.evolves_to.length !== 0 ? (
-                  <TabPanel>
-                    <Evolution pokemon={pokemon} color={color} />
-                  </TabPanel>
-                ) : null}
+                <TabPanel>
+                  <Evolution pokemon={pokemon} color={color} />
+                </TabPanel>
                 <TabPanel>
                   <Moves />
                 </TabPanel>

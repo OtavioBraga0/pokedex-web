@@ -12,7 +12,13 @@ export default function Evolution({ color }) {
 
   return (
     <ul id="evolutions">
-      <EvolveItem evolve={pokemon.evolutionChain.chain} color={color} />
+      {pokemon.evolutionChain.chain.evolves_to.length !== 0 ? (
+        <EvolveItem evolve={pokemon.evolutionChain.chain} color={color} />
+      ) : (
+        <>
+          <h2 className="nothing-message">This pokemon has no evolution</h2>
+        </>
+      )}
     </ul>
   );
 }

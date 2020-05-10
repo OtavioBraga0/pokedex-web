@@ -74,4 +74,10 @@ export const evolveItem = {
   'dusk-stone': 'Dusk Stone',
   'dawn-stone': 'Dawn Stone',
   'ice-stone': 'Ice Stone',
+  'oval-stone': 'Oval Stone',
+  'metal-coat': 'Metal Coat',
+  electirizer: 'Electirizer',
+  magmarizer: 'Magmarizer',
+  protector: 'Protector',
+  'kings-rock': `King's Rock`,
 };
