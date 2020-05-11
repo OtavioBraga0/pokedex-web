@@ -141,4 +141,8 @@ div#modal-container {
       width: 80%;
     }
   }
+
+  @media (max-width: 1200px) {
+    width: 40%
+  }
 }

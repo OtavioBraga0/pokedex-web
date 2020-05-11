@@ -29,5 +29,31 @@ div#home-container {
       justify-content: center;
       align-items: center;
     }
+
+    @media (max-width: 1600px) {
+      ul#pokedex {
+        grid-template-columns: repeat(4, 4fr);
+      }
+    }
+
+    @media (max-width: 1200px) {
+      width: 50%;
+      ul#pokedex {
+        grid-template-columns: repeat(3, 3fr);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      ul#pokedex {
+        grid-template-columns: repeat(2, 2fr);
+      }
+    }
+
+    @media (max-width: 1000px) {
+      width: 100%;
+      ul#pokedex {
+        grid-template-columns: repeat(4, 4fr);
+      }
+    }
   }
 }
