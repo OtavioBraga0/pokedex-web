@@ -7,6 +7,7 @@ import './styles.scss';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import * as PokemonActions from '../../store/modules/pokemon/actions';
 
 import pikachu from '../../assets/pikachu.png';
@@ -49,13 +50,24 @@ export default function Modal({ id }) {
       setColor(colors[pokemon.types[0].type.name]);
 
       if (id === pokemon.id) {
-        console.log(pokemon);
-
         handleChangeTab(0);
         setLoading(false);
       }
     }
   }, [pokemon, id]);
+
+  useEffect(() => {
+    if (pokemon && id === pokemon.id) {
+      const modalContainer = document.getElementById('modal-container');
+      modalContainer.addEventListener('scroll', () => {
+        if (modalContainer.scrollTop === 0) {
+          document.getElementById('more-content').classList.remove('hidden');
+        } else {
+          document.getElementById('more-content').classList.add('hidden');
+        }
+      });
+    }
+  }, []);
 
   return (
     <div
@@ -120,6 +132,9 @@ export default function Modal({ id }) {
                   <Moves />
                 </TabPanel>
               </Tabs>
+            </div>
+            <div id="more-content">
+              <MdKeyboardArrowDown size={70} color={color} />
             </div>
           </div>
         </>

@@ -56,8 +56,6 @@ div#modal-container {
         font-size: 22px;
       }
     }
-
-
   }
 
   div#modal-body{
@@ -65,9 +63,11 @@ div#modal-container {
     align-items: center;
     width: 100%;
 
+
     flex-direction: column;
 
     min-height: 80%;
+
     border-radius: 48px;
 
     background: #ffffff;
@@ -142,7 +142,37 @@ div#modal-container {
     }
   }
 
+  div#more-content {
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 1;
+
+    height: 50px;
+
+    animation: moreContent 1.5s ease-in-out infinite;
+
+    transition: opacity .5s ease-out;
+
+    &.hidden {
+      opacity: 0;
+    }
+  }
+
   @media (max-width: 1200px) {
     width: 40%
+  }
+}
+
+@keyframes moreContent {
+  0% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 20px;
+  }
+  100% {
+    bottom: 0
   }
 }
