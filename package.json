@@ -9,7 +9,7 @@
     "axios": "^0.19.2",
     "eslint-loader": "^3.0.3",
     "immer": "^5.3.4",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "polished": "^3.4.4",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
